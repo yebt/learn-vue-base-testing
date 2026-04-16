@@ -1,6 +1,13 @@
 <script setup lang="ts">
-import ChatMessages from '@/components/chat/ChatMessages.vue';
+import ChatMessages from '@/components/chat/ChatMessages.vue'
+import type { ChatMessage } from '@/interfaces/chat-message.interface'
+import { ref } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
 
+const messages = ref<ChatMessage[]>([
+  { id: uuidv4(), text: 'Hola amor, ¿cómo estás?', isSentByUser: true },
+  { id: uuidv4(), text: 'Nope', isSentByUser: false},
+])
 </script>
 
 <!-- Fuente: https://tailwindcomponents.com/component/chat-layout -->
@@ -11,7 +18,7 @@ import ChatMessages from '@/components/chat/ChatMessages.vue';
     </div>
 
     <!-- chat messages -->
-    <ChatMessages />
+    <ChatMessages :messages="messages" />
 
     <!-- Message box -->
   </div>
