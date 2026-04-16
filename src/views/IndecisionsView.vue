@@ -1,24 +1,9 @@
 <script setup lang="ts">
 import ChatMessages from '@/components/chat/ChatMessages.vue'
-import type { ChatMessage } from '@/interfaces/chat-message.interface'
-import { ref } from 'vue'
-import { v4 as uuidv4 } from 'uuid'
 import MessageBox from '@/components/chat/MessageBox.vue'
+import { useChat } from '@/composables/useChat'
 
-const messages = ref<ChatMessage[]>([
-  { id: uuidv4(), text: 'Hola amor, ¿cómo estás?', isSentByUser: true },
-  { id: uuidv4(), text: 'Nope', isSentByUser: false},
-])
-
-const handleMessageSend = (messageText: string) => {
-  if (messageText.trim() === '') return
-  const newMessageToSave: ChatMessage = {
-    id: uuidv4(),
-    text: messageText,
-    isSentByUser: true,
-  }
-  messages.value.push(newMessageToSave)
-}
+const { messages, handleMessageSend } = useChat()
 </script>
 
 <!-- Fuente: https://tailwindcomponents.com/component/chat-layout -->
