@@ -2,7 +2,7 @@
 interface Props {
   text: string
   isSentByUser: boolean
-  img?: string
+  image?: string
 }
 
 defineProps<Props>()
@@ -17,7 +17,7 @@ defineProps<Props>()
   <div v-else class="flex">
     <div class="bg-gray-300 text-black p-2 rounded-lg max-w-xs">
       <span class="capitalize">{{ text }}</span>
-      <img class="w-52 h-52 cover rounded-md " v-if="img" :src="img" alt="">
+      <img class="w-52 h-52 cover rounded-md " v-if="image" :src="image" alt="">
     </div>
   </div>
 </template>

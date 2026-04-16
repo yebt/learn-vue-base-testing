@@ -1,6 +1,15 @@
 import type { ChatMessage } from '@/interfaces/chat-message.interface'
 import { ref } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
+import type { YesNoResponse } from '@/interfaces/yes-no-response.interface'
+
+const getApiResponse = async () => {
+  const resp = await fetch('https://yes-no-wtf.vercel.app/api')
+  const data = (await resp.json()) as YesNoResponse
+
+
+  return data
+}
 
 export const useChat = () => {
   const messages = ref<ChatMessage[]>([
@@ -8,14 +17,27 @@ export const useChat = () => {
     // { id: uuidv4(), text: 'Nope', isSentByUser: false },
   ])
 
-  const handleMessageSend = (messageText: string) => {
+  const handleMessageSend = async (messageText: string) => {
     if (messageText.trim() === '') return
     const newMessageToSave: ChatMessage = {
       id: uuidv4(),
       text: messageText,
       isSentByUser: true,
     }
+
     messages.value.push(newMessageToSave)
+
+    if (!messageText.endsWith('?')) return
+
+    const {answer, image} = await getApiResponse()
+
+    messages.value.push({
+      id: uuidv4(),
+      text: answer,
+      isSentByUser: false,
+      image: image,
+    })
+
   }
 
   return {
@@ -23,6 +45,6 @@ export const useChat = () => {
     messages,
 
     // methods
-    handleMessageSend
+    handleMessageSend,
   }
 }
