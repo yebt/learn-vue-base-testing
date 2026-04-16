@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ChatMessages from '@/components/chat/ChatMessages.vue';
-import MessageBox from '@/components/chat/MessageBox.vue';
 
 </script>
 
@@ -15,6 +14,5 @@ import MessageBox from '@/components/chat/MessageBox.vue';
     <ChatMessages />
 
     <!-- Message box -->
-    <MessageBox />
   </div>
 </template>
