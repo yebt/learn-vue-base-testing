@@ -8,14 +8,11 @@ const emits = defineEmits<{
 
 const newMessage = ref('')
 
-const sendMessage = ()=> {
+const sendMessage = () => {
   if (newMessage.value.trim() === '') return
   emits('sendMessage', newMessage.value)
   newMessage.value = ''
 }
-
-
-
 </script>
 
 <template>

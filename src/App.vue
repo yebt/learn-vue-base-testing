@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import IndecisionsView from '@/views/IndecisionsView.vue';
-
+import IndecisionsView from '@/views/IndecisionsView.vue'
 </script>
 
 <template>

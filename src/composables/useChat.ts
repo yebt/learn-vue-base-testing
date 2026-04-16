@@ -2,11 +2,11 @@ import type { ChatMessage } from '@/interfaces/chat-message.interface'
 import { ref } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import type { YesNoResponse } from '@/interfaces/yes-no-response.interface'
+import { sleep } from '@/helper/sleep'
 
 const getApiResponse = async () => {
   const resp = await fetch('https://yes-no-wtf.vercel.app/api')
   const data = (await resp.json()) as YesNoResponse
-
 
   return data
 }
@@ -28,8 +28,9 @@ export const useChat = () => {
     messages.value.push(newMessageToSave)
 
     if (!messageText.endsWith('?')) return
+    sleep(1.5)
 
-    const {answer, image} = await getApiResponse()
+    const { answer, image } = await getApiResponse()
 
     messages.value.push({
       id: uuidv4(),
@@ -37,7 +38,6 @@ export const useChat = () => {
       isSentByUser: false,
       image: image,
     })
-
   }
 
   return {
