@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 
-export const useCounter = (initialValue: number = 5) => {
+export const useCounter = (initialValue: number = 0) => {
   // const squareCounter = computed(() => counter.value * counter.value);
   const counter = ref(initialValue)
 
