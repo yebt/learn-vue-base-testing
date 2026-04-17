@@ -13,9 +13,23 @@ describe("<MyCounter />", () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
-  // it("should render", () => {
-  // }
+  it("Render counter values correctly", () => {
+    const value = 5
+
+    const wrapper = mount(MyCounter,{
+      props: {
+        value,
+      }
+    })
+
+    // console.log(wrapper.html());
+
+    const firsth3 = wrapper.find("h3")
+
+    expect(firsth3.text()).toContain(`Counter: ${value}`)
+    expect(wrapper.find('[data-testid="square-label"]').text()).toContain(`Square: ${value * value}`)
+
+  })
 })

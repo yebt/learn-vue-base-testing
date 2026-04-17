@@ -1,7 +1,7 @@
 <template>
   <section>
     <h3>Counter: {{ counter }}</h3>
-    <h3>Square: {{ squareCounter }}</h3>
+    <h3 data-testid="square-label">Square: {{ squareCounter }}</h3>
 
     <div>
       <button class="btn" @click="counter++">+1</button>
@@ -16,10 +16,9 @@ import { useCounter } from '../composables/useCounter'
 interface Props {
   value: number
 }
-defineProps<Props>()
-const { counter, squareCounter } = useCounter(10)
+const { value } = defineProps<Props>()
+const { counter, squareCounter } = useCounter(value)
 </script>
-
 
 <style scoped>
 @reference "@/assets/styles.css";
