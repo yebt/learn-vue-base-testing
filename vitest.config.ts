@@ -6,7 +6,7 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: 'jsdom',
-      globals: true
+      globals: true,
     },
   }),
 )
