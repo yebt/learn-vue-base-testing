@@ -1,8 +1,7 @@
-import MessageBox from "@/components/chat/MessageBox.vue"
-import { mount } from "@vue/test-utils"
+import MessageBox from '@/components/chat/MessageBox.vue'
+import { mount } from '@vue/test-utils'
 
 describe('<MessageBox />', () => {
-
   test('Check snapshot', () => {
     const wrapper = mount(MessageBox)
     expect(wrapper.html()).toMatchSnapshot()
@@ -10,7 +9,6 @@ describe('<MessageBox />', () => {
     expect(wrapper.find('input[type="text"]').exists()).toBe(true)
     expect(wrapper.find('button').exists()).toBe(true)
     expect(wrapper.find('button svg').exists()).toBe(true)
-
   })
 
   test('Emits sendMessage event when button is clicked with message value in the input', async () => {
@@ -28,7 +26,20 @@ describe('<MessageBox />', () => {
     const emited = emitedValues?.[0]
     expect(emited).toBeTruthy()
     expect(emited).toEqual([message])
-
   })
 
+  test('Emit the sendMessage on press Enter key', async () => {
+    const wrapper = mount(MessageBox)
+    const input = wrapper.find('input[type="text"]')
+
+    const message = 'Hello, World!'
+    await input.setValue(message)
+    await input.trigger('keypress.enter')
+
+    const emitedValues = wrapper.emitted('sendMessage')
+
+    const emited = emitedValues?.[0]
+    expect(emited).toBeTruthy()
+    expect(emited).toEqual([message])
+  })
 })
