@@ -12,8 +12,9 @@
     "lint": "run-s lint:*",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
-    "format": "oxfmt src/",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "test": "vitest --watch=false",
+    "format": "oxfmt src/"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
