@@ -13,6 +13,7 @@
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
     "test:unit": "vitest",
+    "test:coverage": "vitest run --coverage",
     "test": "vitest --watch=false",
     "format": "oxfmt src/"
   },
@@ -26,6 +27,7 @@
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.12.0",
     "@vitejs/plugin-vue": "^6.0.5",
+    "@vitest/coverage-v8": "4.1.4",
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.9.1",

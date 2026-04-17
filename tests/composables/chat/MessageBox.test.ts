@@ -28,6 +28,20 @@ describe('<MessageBox />', () => {
     expect(emited).toEqual([message])
   })
 
+  test('Not emit sendMessage if the text is empty', async () => {
+    const wrapper = mount(MessageBox)
+    const input = wrapper.find('input[type="text"]')
+    const button = wrapper.find('button')
+
+    await input.setValue('    ')
+    // Simulate button click
+    await button.trigger('click')
+
+    const emitedValues = wrapper.emitted('sendMessage')
+
+    expect(emitedValues).toBeUndefined()
+  })
+
   test('Emit the sendMessage on press Enter key', async () => {
     const wrapper = mount(MessageBox)
     const input = wrapper.find('input[type="text"]')

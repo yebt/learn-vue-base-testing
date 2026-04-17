@@ -17,12 +17,11 @@ watch(
   () => messages,
   () => {
     nextTick(() => {
-      if (chatRef.value) {
-        chatRef.value.scrollTo({
-          top: chatRef.value.scrollHeight,
-          behavior: 'smooth',
-        })
-      }
+      if (!chatRef.value) return
+      chatRef.value.scrollTo({
+        top: chatRef.value.scrollHeight,
+        behavior: 'smooth',
+      })
     })
   },
   { deep: true },
